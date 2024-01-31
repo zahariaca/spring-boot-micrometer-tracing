@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: service-webflux
+
+
+logging:
+  level:
+    com:
+      zahariaca: DEBUG
+  pattern:
+#        level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+#    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=%mdc{traceFlags} %p"
+
+management:
+  tracing:
+    propagation:
+      type: b3
+    enabled: true
+    sampling.probability: 1.0
+#  zipkin.tracing.endpoint: http://localhost:9411/api/v2/spans
