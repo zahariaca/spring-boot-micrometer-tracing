@@ -9,7 +9,7 @@ logging:
       zahariaca: DEBUG
   pattern:
 #        level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-#    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=%mdc{traceFlags} %p"
+    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} mdc=%mdc %p"
 
 management:
   tracing:
@@ -17,4 +17,10 @@ management:
       type: b3
     enabled: true
     sampling.probability: 1.0
+    baggage:
+#      correlation:
+#        fields: test-baggage
+      remote-fields:
+        - test-baggage
+        - X-TRACE-ID
 #  zipkin.tracing.endpoint: http://localhost:9411/api/v2/spans

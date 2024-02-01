@@ -6,7 +6,8 @@ spring:
 logging:
   pattern:
     #    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=%mdc{traceFlags} %p"
+#    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} trace_flags=%mdc{traceFlags} %p"
+    level: "trace_id=%mdc{traceId} span_id=%mdc{spanId} mdc=%mdc %p"
   level:
     com:
       zahariaca: DEBUG

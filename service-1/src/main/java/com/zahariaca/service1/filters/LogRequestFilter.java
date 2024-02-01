@@ -1,8 +1,11 @@
 package com.zahariaca.service1.filters;
 
 
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.tracing.Tracer;
 import java.nio.charset.StandardCharsets;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.buffer.DataBuffer;
@@ -21,11 +24,15 @@ import static java.lang.System.lineSeparator;
 
 @Slf4j
 @Component
-@Order(0)
+//@Order(0)
+@RequiredArgsConstructor
 public class LogRequestFilter implements WebFilter {
+    private final ObservationRegistry observationRegistry;
+    private final Tracer tracer;
 
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange, final WebFilterChain chain) {
+        System.out.println(observationRegistry.getCurrentObservation());
         if (log.isDebugEnabled()) {
             var capture = new BodyCaptureExchange(exchange);
             return chain.filter(capture)

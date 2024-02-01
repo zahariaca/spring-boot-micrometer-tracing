@@ -6,7 +6,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import reactor.core.publisher.Hooks;
 
 @SpringBootApplication
-//@EnableFeignClients
 public class Service1Application {
 
     public static void main(String[] args) {
